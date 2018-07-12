@@ -29,12 +29,7 @@ trait Solver extends GameDef {
    * that are inside the terrain.
    */
   def neighborsWithHistory(b: Block, history: List[Move]): Stream[(Block, List[Move])] = {
-    val all_moves = Stream(
-      (b.up, Up :: history),
-      (b.down, Down :: history),
-      (b.left, Left :: history),
-      (b.right, Right :: history))
-    all_moves.filter{case (block, _) => block isLegal}
+    (b.legalNeighbors.toStream.map{case(block, move) => (block, move :: history)})
   }
 
   /**
@@ -72,12 +67,11 @@ trait Solver extends GameDef {
    */
   def from(initial: Stream[(Block, List[Move])],
            explored: Set[Block]): Stream[(Block, List[Move])] = {
-    val more = (for {
+    val valid_neighbors = (for {
       (block, moves) <- initial
       neighbor <- newNeighborsOnly(neighborsWithHistory(block, moves), explored)
-      if !(explored contains (neighbor._1))
     } yield neighbor)
-    initial ++ from(more, explored ++ (more map (_._1)))
+    initial ++ from(valid_neighbors, explored ++ (valid_neighbors map (_._1)))
   }
 
   /**
@@ -105,6 +99,6 @@ trait Solver extends GameDef {
    */
   lazy val solution: List[Move] = pathsToGoal match {
     case Stream() => Nil
-    case Stream((b, moves), _) => moves.reverse
+    case Stream((_, moves), _) => moves.reverse
   }
 }
