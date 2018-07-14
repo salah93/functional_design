@@ -1,10 +1,10 @@
 course := "progfun2"
-assignment := "streams"
+assignment := "quickcheck"
 
 assignmentInfo := AssignmentInfo(
-  key = "2iZL1kBCEeWwdxI8PoEnkw",
-  itemId = "VSzXq",
-  premiumItemId = Some("Sh2dW"),
-  partId = "EKNhX",
+  key = "l86W1kt6EeWKvAo5SY6hHw",
+  itemId = "ML01L",
+  premiumItemId = Some("DF4y7"),
+  partId = "DZTNG",
   styleSheet = Some((_: File) / "scalastyle" / "scalastyle_config.xml")
 )
