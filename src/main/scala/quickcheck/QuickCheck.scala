@@ -89,16 +89,15 @@ abstract class QuickCheckHeap extends Properties("Heap") with IntHeap {
     } yield ord.lteq(list(i), list(i + 1))).forall(a=> a)
   }
   property("delete Min") = forAll { (a: Int, b: Int, c: Int) =>
-    val l = List(a, b, c)
-    val min = l.min
-    val h1L = l.drop(min)
-    val h1min =  h1L.min
-    val h2L = h1L.drop(h1min)
-    val h2min = h2L.min
-    val heap = insert(a, insert(b, insert(c, empty)))
-    val h1 = deleteMin(heap)
-    val h2 = deleteMin(h1)
-    val h3 = deleteMin(h2)
-    findMin(heap) == min && findMin(h1) == h1min && findMin(h2) == h2min && isEmpty(h3)
+    val l = List(a, b, c).sorted
+    val min = l(0)
+    val second_min = l(1)
+    val third_min = l(2)
+    var h = insert(third_min, insert(second_min, insert(min, empty)))
+    var ret = findMin(h) == min
+    h = deleteMin(h)
+    ret = ret && findMin(h) == second_min
+    h = deleteMin(h)
+    ret && findMin(h) == third_min && isEmpty(deleteMin(h))
   }
 }
