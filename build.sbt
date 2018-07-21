@@ -7,6 +7,7 @@ scalacOptions ++= Seq("-deprecation")
 // grading libraries
 libraryDependencies += "junit" % "junit" % "4.10" % Test
 libraryDependencies += "org.scalacheck" %% "scalacheck" % "1.12.1"
+libraryDependencies += "com.scalarx" % "scalarx_2.10" % "0.1"
 
 // include the common dir
 commonSourcePackages += "common"
