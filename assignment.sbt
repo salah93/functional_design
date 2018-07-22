@@ -1,10 +1,10 @@
 course := "progfun2"
-assignment := "quickcheck"
+assignment := "calculator"
 
 assignmentInfo := AssignmentInfo(
-  key = "l86W1kt6EeWKvAo5SY6hHw",
-  itemId = "ML01L",
-  premiumItemId = Some("DF4y7"),
-  partId = "DZTNG",
-  styleSheet = Some((_: File) / "scalastyle" / "scalastyle_config.xml")
+  key = "QWry5Q33EeaVNg5usvFqrw",
+  itemId = "Qovtr",
+  premiumItemId = Some("sO8Cf"),
+  partId = "9eOy7",
+  styleSheet = Some((_: File) / "scalastyle" / "calculator.xml")
 )
